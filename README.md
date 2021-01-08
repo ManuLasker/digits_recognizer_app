@@ -14,4 +14,4 @@ The website uses HTML and javascript to paint on the canvas and then send the im
 
 This project was created to learn JavaScript, HTML, and FastAPI framework.
 
-The website was deployed to heroku.
+The website was deployed to Heroku.
