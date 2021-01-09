@@ -44,8 +44,7 @@ function requestPrediction(){
         body: raw,
         redirect: 'follow'
     };
-
-    fetch("http://localhost:8080/predict", requestOptions)
+    fetch("http://localhost:5000/predict", requestOptions)
             .then(response => response.json())
             .then(result => {
                 inputClassName.setAttribute("placeholder", result.class_name)
