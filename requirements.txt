@@ -61,8 +61,8 @@ starlette==0.13.6
 table-logger==0.3.6
 terminado==0.8.3
 testpath==0.4.4
-torch==1.7.0
-torchvision==0.8.0
+torch==1.7.0+cpu
+torchvision==0.8.0+cpu
 traitlets==4.3.3
 typing-extensions==3.7.4.3
 ujson==3.2.0
