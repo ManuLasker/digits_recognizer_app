@@ -44,6 +44,7 @@ function requestPrediction(){
         body: raw,
         redirect: 'follow'
     };
+    
     fetch("https://digits-recognition-manu.herokuapp.com/predict", requestOptions)
             .then(response => response.json())
             .then(result => {
