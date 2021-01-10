@@ -44,7 +44,7 @@ function requestPrediction(){
         body: raw,
         redirect: 'follow'
     };
-    fetch("http://localhost:80/predict", requestOptions)
+    fetch("https://digits-recognition-manu.herokuapp.com/predict", requestOptions)
             .then(response => response.json())
             .then(result => {
                 inputClassName.setAttribute("placeholder", result.class_name)
@@ -55,7 +55,7 @@ function requestPrediction(){
 
 var sw = true;
 if (sw){
-    setInterval(requestPrediction, 1000)
+    setInterval(requestPrediction, 700)
     sw = false;
 }
 

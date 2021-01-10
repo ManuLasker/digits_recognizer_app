@@ -38,7 +38,9 @@ def start_serve():
     logger.info("Starting Pytorch mnist digits recognition server.")
     # Get PORT
     port_env = os.popen(
-        "envsubst '$PORT' < /opt/ml/input/config/nginx.conf.temp >> /opt/ml/input/config/nginx.conf")
+        "envsubst '$PORT' <"
+        " /home/digits_recognizer_app/config/nginx.conf.temp"
+        " >> /home/digits_recognizer_app/config/nginx.conf")
 
     # link the log streams to stdout/err so they will be logged to the container logs
     subprocess.check_call(
@@ -49,14 +51,15 @@ def start_serve():
     logger.info("Starting nginx and gunicorn server")
     # start nginx server
     nginx = subprocess.Popen(
-        ['nginx', '-c', '/opt/ml/input/config/nginx.conf'])
+        ['nginx', '-c', '/home/digits_recognizer_app/config/nginx.conf'])
 
     # Start gunicorn server
     gunicorn = subprocess.Popen(['gunicorn',
                                  '--timeout', str(model_server_timeout),
-                                 '-k', 'gevent',
+                                 '-k', 'uvicorn.workers.UvicornWorker',
                                  '-b', 'unix:/tmp/gunicorn.sock',
                                  '-w', str(model_server_workers),
+                                 '--proxy-protocol',
                                  'src:app',
                                  '--log-level', 'INFO'])
 

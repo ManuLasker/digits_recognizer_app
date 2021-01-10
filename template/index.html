@@ -1,33 +1,40 @@
 {% extends "base.html" %}
 {% block content %}
-    <figure>
-        <blockquote class="blockquote">
-            <h1 class="text-center">Draw Digit</h1>
-        </blockquote>
+    <blockquote class="blockquote">
+        <h1 class="text-center">Draw Digit</h1>
+    </blockquote>
 
-        <div class="text-center">
-            <canvas id="draw" width="560px" height="560px"></canvas>
-            <div class="container-sm abs-center">
-                <div class="col mx-auto mb-3">
-                    <label for="formClassName" class="form-label mx-auto">Digit Prediction:</label>
-                    <input type="text" class="mx-auto form-control w-25" id="formClassName" 
-                        placeholder="None" disabled>
-                </div>
-                <div class="col mx-auto mb-3">
-                    <label for="classProbability" class="form-label mx-auto">Probability:</label>
-                    <input type="text" class="mx-auto form-control w-25" id="classProbability" 
-                        placeholder="None" disabled>
-                </div>
+    <div class="text-center">
+        <canvas id="draw" width="560px" height="560px" background="black"></canvas>
+        <div class="container-sm abs-center">
+            <div class="col mx-auto mb-3">
+                <label for="formClassName" class="form-label mx-auto">Digit Prediction:</label>
+                <input type="text" class="mx-auto form-control w-25" id="formClassName" 
+                    placeholder="None" disabled>
             </div>
-
-            <div class="text-center">
-                <button type="button" id="clear"
-                    onclick="clearCanvas();" class="btn btn-light">
-                    clear canvas
-                </button>
+            <div class="col mx-auto mb-3">
+                <label for="classProbability" class="form-label mx-auto">Probability:</label>
+                <input type="text" class="mx-auto form-control w-25" id="classProbability" 
+                    placeholder="None" disabled>
             </div>
         </div>
-    </figure>
 
-    <script src="/static/js/drawing.js"></script>
+        <div class="text-center">
+            <button type="button" id="clear"
+                onclick="clearCanvas();" class="btn btn-light">
+                clear canvas
+            </button>
+        </div>
+        <nav class="navbar fixed-bottom navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand"></a>
+                <form class="d-flex">
+                    <a class="nav-link" 
+                        href="https://www.kaggle.com/mathlasker/digits-recognizer">Kaggle Notebook</a>
+                    <a class="nav-link" 
+                        href="https://www.kaggle.com/mathlasker/digits-recognizer">Github Page</a>
+                </form>
+            </div>
+        </nav>
+    </div>
 {% endblock %}

@@ -21,23 +21,30 @@ RUN apt-get update
 # Python packages from conda
 RUN conda install -c anaconda -y python=3.7.7
 
-# Copy src
-COPY . /home/digits_recognizer_app
-
+COPY config/requirements.txt /home/digits_recognizer_app/config/requirements.txt
 # Install requirements.txt
 RUN pip install -r /home/digits_recognizer_app/config/requirements.txt
 RUN pip install torch==1.7.0+cpu torchvision==0.8.1+cpu \
     -f https://download.pytorch.org/whl/torch_stable.html
-# Copy nginx config
-COPY config/nginx.conf /opt/ml/input/config/nginx.conf.temp
+RUN pip install gevent
+
+# Set work dir
+WORKDIR /home/digits_recognizer_app
+
+# Copy src
+COPY config/nginx.conf /home/digits_recognizer_app/config/nginx.conf.temp
+COPY src /home/digits_recognizer_app/src
+COPY static /home/digits_recognizer_app/static
+COPY template /home/digits_recognizer_app/template
+COPY serve /home/digits_recognizer_app/serve
+COPY run.py /home/digits_recognizer_app/run.py
 
 # Path
 ENV PYTHONUNBUFFERED=TRUE
 ENV PYTHONDONTWRITEBYTECODE=TRUE
 ENV PATH="/home/digits_recognizer_app:${PATH}"
 
-# Set work dir
-WORKDIR /home/digits_recognizer_app
+
 # ENV PORT=80
 
 CMD serve
