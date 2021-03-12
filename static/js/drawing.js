@@ -45,7 +45,7 @@ function requestPrediction(){
         redirect: 'follow'
     };
     
-    fetch("https://digits-recognition-manu.herokuapp.com/predict", requestOptions)
+    fetch("/predict", requestOptions)
             .then(response => response.json())
             .then(result => {
                 inputClassName.setAttribute("placeholder", result.class_name)

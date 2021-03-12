@@ -18,17 +18,6 @@ The website was deployed to Heroku.
 
 Instructions to deploy:
 
-first you need to change the `static/js/drawning.js` file. Change hostname for your `$appName.com`
-and if you are testing on local change it to `http://localhost/predict`
-```
-fetch("https://$appName.com/predict", requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                inputClassName.setAttribute("placeholder", result.class_name)
-                inputProbability.setAttribute("placeholder", result.prob)
-            })
-            .catch(error => console.log('error', error));
-```
 *  Install docker
 *  Install heroku cli
 *  `heroku login`
